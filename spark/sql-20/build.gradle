@@ -8,8 +8,8 @@ apply plugin: 'es.hadoop.build.integration'
 apply plugin: 'scala.variants'
 
 variants {
-    defaultVersion '2.11.12'
-    targetVersions '2.10.7', '2.11.12'
+    defaultVersion project.ext.scala212Version
+    targetVersions project.ext.scala210Version, project.ext.scala211Version, project.ext.scala212Version
 }
 
 println "Compiled using Scala ${project.ext.scalaMajorVersion} [${project.ext.scalaVersion}]"
@@ -19,6 +19,7 @@ String sparkVersion = spark20Version
 if (project.ext.scalaMajorVersion == '2.10') {
     sparkVersion = '2.2.0'
 }
+
 
 compileScala {
     configure(scalaCompileOptions.forkOptions) {
